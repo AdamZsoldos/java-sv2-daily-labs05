@@ -6,22 +6,16 @@ import java.util.List;
 
 public class Cinema {
 
-    private List<Movie> movies = new ArrayList<>();
+    private final List<Movie> movies = new ArrayList<>();
 
     public void addMovie(Movie movie) {
         movies.add(movie);
     }
 
-    public List<Movie> getMovies() {
-        return movies;
-    }
-
-    public List<String> findMovieByTime(LocalDateTime dateTime) {
+    public List<String> findMovieByTime(LocalDateTime showing) {
         List<String> titles = new ArrayList<>();
         for (Movie movie : movies) {
-            for (LocalDateTime showingDateTime : movie.getShowings()) {
-                if (showingDateTime.equals(dateTime)) titles.add(movie.getTitle());
-            }
+            if (movie.hasShowing(showing)) titles.add(movie.getTitle());
         }
         return titles;
     }

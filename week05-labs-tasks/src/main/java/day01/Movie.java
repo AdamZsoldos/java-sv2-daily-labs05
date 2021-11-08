@@ -3,15 +3,7 @@ package day01;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Movie {
-
-    private String title;
-    private List<LocalDateTime> showings;
-
-    public Movie(String title, List<LocalDateTime> showings) {
-        this.title = title;
-        this.showings = showings;
-    }
+public record Movie(String title, List<LocalDateTime> showings) {
 
     public String getTitle() {
         return title;
@@ -19,5 +11,9 @@ public class Movie {
 
     public List<LocalDateTime> getShowings() {
         return showings;
+    }
+
+    public boolean hasShowing(LocalDateTime showing) {
+        return showings.contains(showing);
     }
 }
